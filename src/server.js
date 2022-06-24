@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
-const logger = require('./middlewares/logger');
+const authorize = require('./middlewares/authorize');
+const morgan = require('morgan');
 
-// req => middleware => res
 
-app.use(logger)
+app.use([morgan('tiny'), authorize]);
 
 app.get('/', (req, res) => {
-    
     res.send("Home")
 });
 
